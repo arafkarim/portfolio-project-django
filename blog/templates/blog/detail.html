@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Finix</title>
+    <title>{{ detail.title }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -32,13 +32,6 @@
         -ms-user-select: none;
         user-select: none;
       }
-      .img-custom {
-          height: 250px;
-          object-fit: cover;
-      }
-      .profile-pic {
-        max-width: 120px;
-      }
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -59,14 +52,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% static 'cv.pdf' %}" target="_blank">Resume</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+                            <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://twitter.com/" target="_blank">Twitter</a>
@@ -74,20 +67,15 @@
                         </ul>
                     </div>
             </div>
-        </nav>  
+        </nav>          
     </header>
 
 <main role="main">
 
   <section class="jumbotron text-center mb-0">
     <div class="container">
-      <img src="{% static 'finix.png' %}" class="profile-pic rounded-circle img-thumbnail" alt="">
-      <h1>Hi! Im' Finix.</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <p>
-        <a href="mailto:arafkarim@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        <a href="https://twitter.com/" target="_blank" class="btn btn-secondary my-2">Follow on Twitter</a>
-      </p>
+      <h1>{{ detail.title }}</h1>
+      <p class="lead text-muted">Posted on {{ detail.pub_date_pretty }}</p>
     </div>
   </section>
 
@@ -96,16 +84,10 @@
 
       <div class="row">
 
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm rounded">
-            <img src="{{ job.image.url }}" class="img-fluid rounded-top img-custom" alt="">
-            <div class="card-body">
-              <p class="card-text">{{ job.summery }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}        
+        <div class="col-md-12">
+            <img src="{{ detail.image.url }}" class="img-fluid rounded mb-3" alt="">
+            <p class="card-text mb-0">{{ detail.body }}</p>
+        </div>      
         
       </div>
     </div>
